@@ -1,19 +1,25 @@
-// Complete the structure definition.
-//Tuple Struct Implementation
-struct Point(f32, f32);
+// Enums
 
-impl Point {
-    fn on_x_axis(&self) -> bool {
-        self.1 == 0.0
-    }
-    fn on_y_axis(&self) -> bool {
-        self.0 == 0.0
-    }
+struct Product {
+    name: String,
+    price: f32,
+    in_stock: bool,
+    category: ProductCategory,
+}
+
+enum ProductCategory {
+    Clothing,
+    Electronics,
+    Books,
 }
 
 fn main() {
-    let point = Point(0.0, 0.0);
-    if point.on_x_axis() && point.on_y_axis() {
-        println!("Point is origin");
-    }
+    let category = ProductCategory::Electronics;
+
+    let newProduct = Product {
+        name: String::from("Book"),
+        price: 300.0,
+        in_stock: true,
+        category,
+    };
 }
