@@ -7,7 +7,6 @@ struct Product {
     category: ProductCategory,
 }
 
-
 // Example 02
 enum ProductCategory {
     Clothing,
@@ -23,9 +22,8 @@ enum Commands {
 }
 
 impl Commands {
-
-    fn serialize_enum($self) -> String {
-        String::from("Returning serialized json");
+    fn serialize_enum(&self) -> String {
+        String::from("Returning serialized json")
     }
 }
 
@@ -37,12 +35,15 @@ fn main() {
         to: String::from("Goodbye"),
     };
 
+    let enum_to_json = cmd.serialize_enum();
+    println!("String from Enum is {}", enum_to_json);
+
     let category = ProductCategory::Electronics;
 
-    let newProduct = Product {
-        name: String::from("Book"),
-        price: 300.0,
-        in_stock: true,
-        category,
-    };
+    // let newProduct = Product {
+    //     name: String::from("Book"),
+    //     price: 300.0,
+    //     in_stock: true,
+    //     category,
+    // };
 }
