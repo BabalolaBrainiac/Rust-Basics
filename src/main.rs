@@ -16,19 +16,19 @@
 // }
 
 enum Commands {
-    AddText,
+    AddText(String),
     Undo,
-    Replace {
-        from: String,
-        to: String,
-    },
-    moveCursor ( i32, i32)
+    Replace { from: String, to: String },
+    moveCursor(i32, i32),
 }
 
 fn main() {
-
-
-
+    let cmd = Commands::AddText(String::from("Testing"));
+    let cmd = Commands::moveCursor(332, 333);
+    let cmd = Commands::Replace {
+        from: String::from("Welcome"),
+        to: String::from("Goodbye"),
+    };
 
     //Example 01
     // let category = ProductCategory::Electronics;
