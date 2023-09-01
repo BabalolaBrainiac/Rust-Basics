@@ -1,25 +1,32 @@
 // Enums
 //Example 01
-// struct Product {
-//     name: String,
-//     price: f32,
-//     in_stock: bool,
-//     category: ProductCategory,
-// }
-//
+struct Product {
+    name: String,
+    price: f32,
+    in_stock: bool,
+    category: ProductCategory,
+}
 
-//Example 02
-// enum ProductCategory {
-//     Clothing,
-//     Electronics,
-//     Books,
-// }
+
+// Example 02
+enum ProductCategory {
+    Clothing,
+    Electronics,
+    Books,
+}
 
 enum Commands {
     AddText(String),
     Undo,
     Replace { from: String, to: String },
     moveCursor(i32, i32),
+}
+
+impl Commands {
+
+    fn serialize_enum($self) -> String {
+        String::from("Returning serialized json");
+    }
 }
 
 fn main() {
@@ -30,13 +37,12 @@ fn main() {
         to: String::from("Goodbye"),
     };
 
-    //Example 01
-    // let category = ProductCategory::Electronics;
-    //
-    // let newProduct = Product {
-    //     name: String::from("Book"),
-    //     price: 300.0,
-    //     in_stock: true,
-    //     category,
-    // };
+    let category = ProductCategory::Electronics;
+
+    let newProduct = Product {
+        name: String::from("Book"),
+        price: 300.0,
+        in_stock: true,
+        category,
+    };
 }
