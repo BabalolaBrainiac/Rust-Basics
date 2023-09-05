@@ -1,49 +1,34 @@
-// Enums
-//Example 01
-struct Product {
-    name: String,
-    price: f32,
-    in_stock: bool,
-    category: ProductCategory,
+enum Operation {
+    Add(i32, i32),
+    Mul(i32, i32),
+    Sub { first: i32, second: i32 },
+    Div { divident: i32, divisor: i32 },
 }
 
-// Example 02
-enum ProductCategory {
-    Clothing,
-    Electronics,
-    Books,
-}
-
-enum Commands {
-    AddText(String),
-    Undo,
-    Replace { from: String, to: String },
-    moveCursor(i32, i32),
-}
-
-impl Commands {
-    fn serialize_enum(&self) -> String {
-        String::from("Returning serialized json")
+impl Operation {
+    fn execute(self) -> Result<i32, String> {
+        match self {
+            Self::Add(a, b) => Ok(a + b),
+            Self::Mul(a, b) => Ok(a * b),
+            Self::Sub { first, second } => Ok(first - second),
+            Self::Div { divident, divisor } => {
+                if divisor == 0 {
+                    Err(String::from("Can not divide by zero"))
+                } else {
+                    Ok(divident / divisor)
+                }
+            }
+        }
     }
 }
 
 fn main() {
-    let cmd = Commands::AddText(String::from("Testing"));
-    let cmd = Commands::moveCursor(332, 333);
-    let cmd = Commands::Replace {
-        from: String::from("Welcome"),
-        to: String::from("Goodbye"),
+    let user_input = Operation::Div {
+        divident: 20,
+        divisor: 0,
     };
-
-    let enum_to_json = cmd.serialize_enum();
-    println!("String from Enum is {}", enum_to_json);
-
-    let category = ProductCategory::Electronics;
-
-    // let newProduct = Product {
-    //     name: String::from("Book"),
-    //     price: 300.0,
-    //     in_stock: true,
-    //     category,
-    // };
+    match user_input.execute() {
+        Ok(res) => println!("Result: {res}"),
+        Err(e) => println!("Error: {e}"),
+    }
 }
