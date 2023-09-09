@@ -1,34 +1,44 @@
-enum Operation {
-    Add(i32, i32),
-    Mul(i32, i32),
-    Sub { first: i32, second: i32 },
-    Div { divident: i32, divisor: i32 },
-}
-
-impl Operation {
-    fn execute(self) -> Result<i32, String> {
-        match self {
-            Self::Add(a, b) => Ok(a + b),
-            Self::Mul(a, b) => Ok(a * b),
-            Self::Sub { first, second } => Ok(first - second),
-            Self::Div { divident, divisor } => {
-                if divisor == 0 {
-                    Err(String::from("Can not divide by zero"))
-                } else {
-                    Ok(divident / divisor)
-                }
-            }
-        }
-    }
-}
+use std::fmt::format;
 
 fn main() {
-    let user_input = Operation::Div {
-        divident: 20,
-        divisor: 0,
-    };
-    match user_input.execute() {
-        Ok(res) => println!("Result: {res}"),
-        Err(e) => println!("Error: {e}"),
+    let mut vec = Vec::new();
+    vec.push(String::from("Babalola Opeyemi"));
+    vec.push(String::from("Ajoke"));
+    vec.push(String::from("Test"));
+
+
+//
+    //Create vector using macros
+//    let  v2 = vec![1, 2, 3, 4];
+    //pass value
+//     vec[1]  = String::from("Ajoke Ibrahim");
+
+    //use get
+//    let  d = vec.get(1);
+
+//    if let Some(val)  = dan  {
+//        println!("{val}")
+//    }
+
+    //loop
+
+    for i in &mut vec {
+        i.push_str("!");
     }
+
+//    for j in &mut vec {
+//        println!("{j}")
+//    }
+
+    let  mut v3 = vec![];
+
+    for k in vec.into_iter() {
+        v3.push(k)
+    }
+
+    for i in &mut v3 {
+        println!("{i}")
+    }
+
+
 }
